@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <center>
+
+  <head>
+    <title>NinetyNineCats</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+  </head>
+
+
+  <body style="background-color:powderblue;">
+    <!-- <#% if logged_in? %>
+
+      <form action="<#%= session_url %>" method="POST">
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="hidden" name="authenticity_token" value="<#%= form_authenticity_token %>">
+        <input type="submit" value="Log out">
+      </form>
+    <% else %>
+      <h1>Wouldn't you sign up or sign in?</h1>
+      <form action="<#%= new_session_url %>" method="POST">
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="hidden" name="authenticity_token" value="<#%= form_authenticity_token %>">
+        <input type="submit" value="Log-in"> 
+
+    <#% end %>--> 
+
+    <div align="right">
+      <% if current_user.nil? %>
+        <a href="<%= new_session_url %>">Sign-in</a>
+        <a href="<%= new_user_url %>">Sign-up</a>
+      <% else %>
+        <%= current_user.user_name %>
+        <form action="<%= session_url %>" method="POST">
+          <input
+            type="hidden"
+            name="authenticity_token"
+            value="<%= form_authenticity_token %>">
+          <input type="hidden" name="_method" value="delete">
+          <input type="submit" value="Logout">
+        </form>
+      <% end %>
+    </div>
+    <h1><a href="<%= cats_url %>">99 Cats</a></h1>
+    <%= yield %>
+  </body>
+  <br>
+  <img src="https://cdn.cnn.com/cnnnext/dam/assets/150324154022-12-internet-cats-restricted-super-169.jpg" alt="catsuponcats">
+
+  <center>
+
+</html>
